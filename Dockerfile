@@ -1,8 +1,7 @@
 FROM alpine:edge
-
 LABEL maintainer "Marvin Steadfast <marvin@xsteadfastx.org>"
+ENV WALLABAG_VERSION=2.3 \
 
-ARG WALLABAG_VERSION=2.2.3
 
 RUN set -ex \
  && apk update \
