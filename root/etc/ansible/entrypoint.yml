@@ -33,6 +33,8 @@
         - /var/www/wallabag/data/assets
         - /var/www/wallabag/data/db
       notify: chown dir
+      tags:
+        - firstrun
 
     - name: write parameters.yml
       template:
@@ -58,6 +60,8 @@
         port="{{ database_port }}"
       when: (database_driver == 'pdo_mysql') or
             (database_driver == 'pdo_pgsql')
+      tags:
+        - firstrun
 
     - name: add mariadb db
       mysql_db:
@@ -69,6 +73,8 @@
         login_password="{{ database_root_password_mariadb }}"
       notify: run install
       when: database_driver == 'pdo_mysql'
+      tags:
+        - firstrun
 
     - name: add mariadb user
       mysql_user:
@@ -83,6 +89,8 @@
         state=present
       when: (database_driver == 'pdo_mysql') and
             (database_user != 'root')
+      tags:
+        - firstrun
 
     - name: postgresql db
       postgresql_db:
@@ -94,6 +102,8 @@
         login_password="{{ database_root_password_postgres }}"
       notify: run install
       when: database_driver == 'pdo_pgsql'
+      tags:
+        - firstrun
 
     - name: add postgresql user
       postgresql_user:
@@ -108,6 +118,8 @@
         state=present
       when: (database_driver == 'pdo_pgsql') and
             (database_user != 'postgres')
+      tags:
+        - firstrun
 
     - name: remove cache
       file:
