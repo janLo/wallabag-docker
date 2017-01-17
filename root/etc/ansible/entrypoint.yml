@@ -61,6 +61,8 @@
         port="{{ database_port }}"
       when: (database_driver == 'pdo_mysql') or
             (database_driver == 'pdo_pgsql')
+      tags:
+        - firstrun
 
     - name: add mariadb db
       mysql_db:
@@ -91,6 +93,7 @@
       when: (database_driver == 'pdo_mysql') and
             (database_user != 'root') and
             (populate_database == True)
+            (database_user != 'root')
       tags:
         - firstrun
 
@@ -120,8 +123,12 @@
         login_password="{{ database_root_password_postgres }}"
         state=present
       when: (database_driver == 'pdo_pgsql') and
+<<<<<<< HEAD
             (database_user != 'postgres') and
             (populate_database == True)
+=======
+            (database_user != 'postgres')
+>>>>>>> Add ability to run pocket importer
       tags:
         - firstrun
 
