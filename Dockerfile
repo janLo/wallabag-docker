@@ -54,6 +54,7 @@ COPY root /
 RUN set -ex \
  && cd /var/www/wallabag \
  && SYMFONY_ENV=prod composer install --no-dev -o --prefer-dist \
+ && git checkout . \
  && chown -R nobody:nobody /var/www/wallabag
 
 EXPOSE 80

@@ -140,6 +140,12 @@
         chdir: /var/www/wallabag
       notify: chown dir
 
+    - name: restore deleted web/bundles/wallabagcore
+      shell: git checkout .
+      args:
+        chdir: /var/www/wallabag
+      notify: chown dir
+
   handlers:
 
     - name: run install
