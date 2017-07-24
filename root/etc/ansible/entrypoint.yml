@@ -4,6 +4,7 @@
 
   vars:
 
+    domain_name: "{{ lookup('env', 'SYMFONY__ENV__DOMAIN_NAME') }}"
     database_driver: "{{ lookup('env', 'SYMFONY__ENV__DATABASE_DRIVER')|default('pdo_sqlite', true) }}"
     database_host: "{{ lookup('env', 'SYMFONY__ENV__DATABASE_HOST')|default('127.0.0.1', true) }}"
     database_name: "{{ lookup('env', 'SYMFONY__ENV__DATABASE_NAME')|default('symfony', true) }}"
@@ -123,12 +124,8 @@
         login_password="{{ database_root_password_postgres }}"
         state=present
       when: (database_driver == 'pdo_pgsql') and
-<<<<<<< HEAD
             (database_user != 'postgres') and
             (populate_database == True)
-=======
-            (database_user != 'postgres')
->>>>>>> Add ability to run pocket importer
       tags:
         - firstrun
 
