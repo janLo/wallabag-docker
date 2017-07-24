@@ -11,6 +11,8 @@ parameters:
     # with MySQL, use "utf8mb4" if you got problem with content with emojis
     database_charset: utf8
 
+    domain_name: https://your-wallabag-url-instance.com
+
     test_database_driver: pdo_sqlite
     test_database_host: 127.0.0.1
     test_database_port: ~
